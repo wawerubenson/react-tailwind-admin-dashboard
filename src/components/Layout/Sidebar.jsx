@@ -1,21 +1,156 @@
-import { Zap } from 'lucide-react'
+import { BarChart3, Calendar, ChevronDown, CreditCard, FileText, LayoutDashboard, MessageSquare, Package, Settings, ShoppingBag, Users, Zap } from 'lucide-react'
 import React from 'react'
+
+const menuItems = [
+  {
+    id: "dashboard",
+    icon: LayoutDashboard,
+    label: "Dashboard",
+    active: true,
+    badge: "New"
+  },
+  {
+    id: "dashboard",
+    icon: BarChart3,
+    label: "Analytics",
+    submenu: [
+      { id: "overview", label: "Overview" },
+      { id: "reports", label: "Reports" },
+      { id: "insights", label: "Insights" }
+    ]
+  },
+  {
+    id: "users",
+    icon: Users,
+    count: "2.4k",
+    label: "Users",
+    submenu: [
+      { id: "all-users", label: "All Users" },
+      { id: "roles", label: "Roles & Permissions" },
+      { id: "activity", label: "User Activity" }
+
+    ]
+  },
+  {
+    id: "ecommerce",
+    icon: ShoppingBag,
+    label: "E-Commerce",
+    submenu: [
+      { id: "products", label: "Products" },
+      { id: "orders", label: "Orders" },
+      { id: "customer", label: "Customers" }
+    ]
+  },
+  {
+    id: "inventory",
+    icon: Package,
+    label: "Inventory",
+    count: "847"
+  },
+  {
+    id: "transactions",
+    icon: CreditCard,
+    label: "Transactions"
+  },
+  {
+    id: "messages",
+    icon: MessageSquare,
+    label: "Messages",
+    badge: "12"
+  },
+  {
+    id: "calendar",
+    icon: Calendar,
+    label: "Calendar"
+  },
+  {
+    id: "reports",
+    icon: FileText,
+    label: "Reports"
+  },
+  {
+    id: "Settings",
+    icon: Settings,
+    label: "Settings"
+  }
+]
 
 const Sidebar = () => {
   return (
-    <div className='transition duration-300 ease-in-out bg-white/80 dark:bg-slate-900/80 backdrop:blur-xl border-r border-slate-200/50 dark:border-slate-700/50 flex flex-col relative z-10'>
+    <div className='w-72 transition duration-300 ease-in-out bg-white/80 dark:bg-slate-900/80 backdrop-blur-xl border-r border-slate-200/50 dark:border-slate-700/50 flex flex-col relative z-10'>
 
       {/* Logo */}
       <div className='p-6 border-b border-slate-200/50 dark:border-slate-700/50'>
         <div className='flex items-center space-x-3'>
-          <div className='w-10 h-10 bg-gradient-to-r from-blue-600 to-purple-600 rounded-xl flex items-center justify-center shadow-lg'>
+
+          <div className='w-10 h-10 bg-linear-to-r from-blue-600 to-purple-600 rounded-xl flex items-center justify-center shadow-lg'>
             <Zap className='w-6 h-6 text-white' />
           </div>
 
           {/* Conidiotnal rendering */}
+          <div>
+            <h4 className='text-xl font-bold text-white-500 dark:text-white'>Bold Apps</h4>
+            <p className='text-xs text-slate-500 dark:text-slate-400'>Admin Dasboard</p>
+          </div>
 
         </div>
       </div>
+
+      {/* Navigation  */}
+
+      <nav className='flex-1 p-4 space-y-2 overflow-y-auto'>
+        {menuItems.map((item) => {
+          return (
+            <div key={item.id} className=''>
+              <button className={`w-full flex items-center justify-between p-3 rounded-xl transition-all duration-200`}>
+                <div className='flex items-center space-x-3 dark:text-white'>
+                  <item.icon className='w-5 h-5' />
+
+                  <>
+                    <span className='font-medium ml-2'>{item.label}</span>
+                    {item.badge && (
+                      <span className='px-2 py-1 text-xs bg-red-500 text-white rounded-full'>{item.badge}</span>
+                    )}
+
+                    {item.count && <span className='px-2 py-1 text-xs bg-slate-200 dark:bg-slate-700 text-slate-600 dark:text-slate-300 rounded-full'>{item.count}</span>}
+
+                  </>
+
+                </div>
+
+                {item.submenu && <ChevronDown className='w-4 h-4 transition-transform dark:text-white' />}
+              </button>
+
+              {/* submenus */}
+              <div className='ml-8 mt-2 space-y-1'>
+                {/* { item.submenu.map((subitem)=> {
+                  return (
+                    <button>
+                      {subitem.label}
+                    </button>
+                  )
+                }) } */}
+              </div>
+
+            </div>
+          );
+        })}
+      </nav>
+
+      {/* User profile */}
+      <div className='p-4 border-t border-slate-200/50 dark:border-slate-700/50'>
+        <div className='flex items-center space-x-3 p-3 rounded-xl bg-slate-50 dark:bg-slate-800/50'>
+          <img src="https://images.pexels.com/photos/1681010/pexels-photo-1681010.jpeg?auto=compress&cs=tinysrgb&w=64&h=64&dpr=2" alt="" className='w-10 h-10 rounded-full ring-2 ring-blue-500' />
+          <div className='flex-1 min-w-0'>
+            <div className='flex-1 min-w-0'>
+              <p className='text-sm font-medium text-slate-800 dark:text-white truncate'>Ben W.</p>
+              <p className='text-xs text-slate-500 dark-text-slate-400 truncate'>IT Officer</p>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
     </div>
   )
 }
