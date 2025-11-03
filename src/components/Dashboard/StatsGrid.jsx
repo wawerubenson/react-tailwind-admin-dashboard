@@ -71,7 +71,7 @@ const StatsGrid = () => {
 
                         {/* Progress bar */}
                         <div className='mt-4 h-2 bg-slate-100 dark:bg-slate-800 rounded-full overflow-hidden'>
-                            <div className={`h-full bg-gradient-to-r ${stats.color} rounded-full transition-all duration-100`} style={{ width: stats.trend === "up" ? "75%" : "45%" }}>
+                            <div className={`h-full bg-linear-to-r ${stats.color} rounded-full transition-all duration-100`} style={{ width: stats.trend === "up" ? "75%" : "45%" }}>
 
                             </div>
                         </div>
